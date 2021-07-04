@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once 'ConnexionToBD.php';
+
 $conn = Conect_ToBD("magasin_en_ligne", "root");
 
 if (isset($_GET['search'])) {
@@ -62,9 +63,10 @@ $result = $conn->query($scr);
                             <th>date_com</th>
                             <th>adresse_liv</th>
                             <th>id_uti</th>
-                            <th>etat</th>
                             <th>type paiement</th>
+                            <th>etat</th>
                             <th> informations paiement </th>
+                            <th> modifier informations</th>
                             
 
                         </tr>
@@ -87,7 +89,6 @@ $result = $conn->query($scr);
                                 <td><?php echo "$date" ?></td>
                                 <td><?php echo "$adresse" ?></td>
                                 <td><?php echo "$id_uti" ?></td>
-                                <td><?php echo "$etat" ?></td>
                                 <td><?php if ($id_paiementE != '') {
                                         $var = 1;
                                         echo "espece";
@@ -98,6 +99,8 @@ $result = $conn->query($scr);
                                     }
                                     else {$var=3;
                                     echo "chèque";} ?></td>
+                                <td><?php echo "$etat" ?></td>
+                                
                                 <td> <?php if ($var==2) {
                                             $scr = "SELECT type_carte from type_carte NATURAL JOIN paiement_carte where id_commande=$id_commande";
                                             $res = $conn->query($scr);
@@ -118,6 +121,7 @@ $result = $conn->query($scr);
                                             <?php 
 
                                         }  ?></td>
+                                <td> <button class="miniBut" style="background-color: aqua;" name="modifier" onclick="show_elem_id('info_mod-<?php echo $id_commande;?>')"><i class="fa fa-edit"></i></button> </td>
                             </tr>
                         <?php
                     }
@@ -127,6 +131,94 @@ $result = $conn->query($scr);
             </div>
         </div>
     </div>
+
+    <?php
+    $scr = "SELECT distinct id_commande from commande NATURAL JOIN paiement_cheque ";
+    $res = $conn->query($scr);
+    while ($qe = $res->fetch(PDO::FETCH_ASSOC)) {
+        $id_commande = $qe['id_commande'];
+    ?>
+        <div class="modal" id="info_cheque-<?php echo $id_commande; ?>">
+            <center>
+
+                <div class="container">
+                    <div class="row">
+                        <button class="mi" onclick="unshow_elem_id('info_cheque-<?php echo $id_commande; ?>');">&times;</button>
+                    </div>
+                    <div class="row">
+                        <div class="table-wrapper">
+                            <table class="fl-table">
+                                <thead>
+                                    <tr>
+                                        <th>date paiement</th>
+                                        <th>date encaissment</th>
+                                        <th>Montant</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $scr = "SELECT * FROM paiement_cheque where id_commande=$id_commande";
+                                    $result = $conn->query($scr);
+                                    while ($q = $result->fetch(PDO::FETCH_ASSOC)) {
+                                        $datep = $q['date_paiementC'];
+                                        $datee = $q['date_ech'];
+                                        $montant = $q['montant'];
+
+                                    ?>
+                                        <tr>
+                                            <td><?php echo "$datep"; ?></td>
+                                            <td><?php echo "$datee"; ?></td>
+                                            <td><?php echo "$montant"; ?>dh</td>
+
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                <tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </center>
+        </div>
+
+
+
+
+
+    <?php
+    }
+    ?>
+
+<?php
+    $scr = "SELECT distinct id_commande from commande  ";
+    $res = $conn->query($scr);
+    while ($qe = $res->fetch(PDO::FETCH_ASSOC)) {
+        $id_commande = $qe['id_commande'];
+    ?>
+        <div class="modal" id="info_mod-<?php echo $id_commande;?>">
+            <center>
+
+                <div class="container">
+                    <div class="row">
+                        <button class="mi" onclick="unshow_elem_id('info_mod-<?php echo $id_commande;?>');">&times;</button>
+                    </div>
+                    <div class="row" >
+                        
+                </div>
+
+            </center>
+        </div>
+
+
+
+
+
+    <?php
+    }
+    ?>
 
 
 
