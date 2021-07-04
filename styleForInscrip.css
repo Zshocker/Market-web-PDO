@@ -1,0 +1,285 @@
+/* Style inputs, select elements and textareas */
+  input[type=text],input[type=password],input[type=file], select, textarea,.myInput{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+  
+  /* Style the label to display next to the inputs */
+  
+  
+  /* Style the submit button */
+  .mi,input[type=submit] 
+  {
+    background-color: #b9c0bc;
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin-left: 2.5px;
+    margin-right:2.5px
+
+  }
+  
+  /* Style the container */
+  .container {
+    width: 50%;
+    border-radius: 5px;
+    background-color: #05b4ff;
+    padding: 20px;
+  }
+  
+  .modal 
+  {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Floating column for labels: 25% width */
+  .col-25 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+  .col-25 label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+  }
+  
+  /* Floating column for inputs: 75% width */
+  .col-75 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+  /*.row
+  {
+    width: 100%;
+    height: 80px;
+  }
+  .Bigrow
+  {
+    width: 100%;
+    height: 200px;
+  }*/
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  
+  
+  /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+  .bar {
+    height: 10%;
+    width: 100%;
+    background-color: #385980;
+    
+  }
+  .cont-92-5
+  {
+    height:90%;
+    width: 100%;
+    background-color:#dfe6e9;
+  }
+  .sidebar
+  {
+    float:left;
+    height:100%;
+    width: 15%;
+    background-color: #9e9d83;
+  }
+  .MainCont
+  {
+    float: right;
+    height:100%;
+    width: 85%;
+    border:0px;
+    background-color:#dfe6e9;
+  }
+  .navBar
+  {
+    float: right;
+    border: 0;
+    width: 100%;
+    /*height: 7.5%;*/
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color:#c6e5f3;
+  }
+  .miniBut
+  {
+    border:0px;
+    border-radius:25%;
+    width: 30px;
+    height: 30px;
+    color: #0B131C;
+  }
+
+  .miniBut:hover{
+    cursor: pointer;
+  }
+  .sideBut
+  {
+    height: 100%;
+    width: 100%;
+    background-color:#9c9b85;
+    border: 0px;
+    color:#0B131C;
+  }
+  .sideBut:hover
+  {
+    cursor: pointer;
+    background-color:#5c5b4e;
+  }
+  .sideBDiv
+  {
+    height: 40px;
+    width: 100%;
+    background-color:#9c9b85;
+  }
+ .searchBar{
+    width: 25% !important; 
+    float: left !important;
+    padding: 6px !important;
+    margin-top: 8px !important;
+    margin-right: 8px !important;
+    margin-left: 2px !important;
+    border: none !important;
+    font-size: 17px !important;
+  }
+  @media screen and (max-width: 600px) {
+    .searchBar {
+      float: none;
+      display: block;
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      padding: 14px;
+      border: 1px solid #ccc;  
+    }
+  }
+  .ProdDetailCont
+  {
+    width: 100%;
+    height: 85%;
+    /*background-color:rgb(251, 255, 0);*/
+  }
+  .imagesProdCont
+  {
+    float: left;
+    height: 100%;
+    width: 40%;
+    /*background-color:#5c5b4e;*/
+  }
+  .MainImageCont
+  {
+    float: left;
+    width: 100%;
+    height: 65%;
+    padding-top: 10%;
+    /*background-color:rgb(0, 0, 0);*/
+  }
+  .MainImageS
+  {
+    width: 80%;
+    height:80%;
+    border-radius:10%;
+    margin: 9.5%;
+    margin-top:0;
+    background-color: #05b4ff;
+  }
+  .SwipeBar{
+    width: 80%;
+    float: left;
+    height: 100%;
+    display: flex;
+    overflow: hidden;
+  }
+  .SwipeBar img,.miniImge
+  {
+    width: 80px;
+    height: 80px;
+    border-color: #0B131C;
+    cursor: pointer;
+    margin: 5px;
+    border-style: solid;
+  }
+  .arrows
+  {
+    width: 10%;
+    float: left;
+    height: 65%;
+  
+  }
+  .arrows button
+  {
+    border: 0;
+    border-radius: 50%;
+    width: 50px;
+    height:50px;
+    margin-top: 50%;
+    color: rgb(0, 0, 8);
+    background-color: grey;
+    cursor: pointer;
+  }
+  .arrows button i{
+   font-size: 25px;
+  }
+  .SwipeDiv
+  {
+    width: 100%;
+    height: 30%;
+  }
+.mainDetailFr
+{
+  height: 70%;
+  width: 100%;
+  float: right;
+  padding-left: 3px;
+}
+.MainText
+{
+  font-size: 50px;
+  font-weight: bold;
+  color: black;
+}
+.Comand
+{
+  /*height: 30%;*/
+  width: 100%;
+  float: right;
+}
+.Second-Detail
+{
+    float: right;
+    height: 100%;
+    width: 59%;
+
+}
+.MiniImageCont{
+  float: left;
+  
+}
