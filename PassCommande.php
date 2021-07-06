@@ -30,13 +30,13 @@ if(isset($_POST['Confirm']))
     $date_com=date("Y-m-d");
     $scr="INSERT INTO commande(date_com,adresse_liv,id_etat,id_uti) values('$date_com','$address_liv',1,$id_uti)";
     $conn->exec($scr);
-    $id_Comm=$conn->insert_id;
+    $id_Comm= $conn->lastInsertId();
     if($type_paiment==1)
     {
         $type_cart=$_POST["type-Carte"];
         $scr="INSERT INTO paiement_carte(id_typecarte,id_commande) Values($type_cart,$id_Comm)";
         $conn->exec($scr);
-        $id_pai=$conn->insert_id;
+        $id_pai= $conn->lastInsertId();
         $scr="UPDATE commande SET id_paiementCa=$id_pai where id_commande=$id_Comm ";
         $conn->exec($scr);
     }
@@ -44,7 +44,7 @@ if(isset($_POST['Confirm']))
     {
         $scr="INSERT INTO paiement_espece(id_commande) Values($id_Comm)";
         $conn->exec($scr);
-        $id_pai=$conn->insert_id;
+        $id_pai= $conn->lastInsertId();
         $scr="UPDATE commande SET id_paiementE=$id_pai where id_commande=$id_Comm ";
         $conn->exec($scr);
     }

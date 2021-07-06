@@ -41,12 +41,12 @@ elseif(isset($_POST['accept']))
     }
     else
     {
-    $id_cli=$conn->insert_id;
+    $id_cli= $conn->lastInsertId();
     $scr="DELETE FROM inscription WHERE id_inscri=$id_inscri";
     $res=$conn->exec($scr);
     $scr1="INSERT INTO panier(id_uti) VALUES($id_cli)";
     $res=$conn->exec($scr1);
-    $id_panier=$conn->insert_id;
+    $id_panier= $conn->lastInsertId();
     $scr1="INSERT INTO utilisateur(id_panier) VALUES($id_panier) where id_uti=$id_cli";
     $conn->exec($scr1);
     Send_Login_to($email,$login);

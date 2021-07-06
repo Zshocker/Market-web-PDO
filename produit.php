@@ -16,7 +16,7 @@ if($_POST)
     } else $scr="INSERT INTO produit (Designation,Description,prix_std,reduction,id_cat) Values('$name','$Desc',$prix,$red,$id_cat)";
     $id_photo_scr="SELECT MAX(id_photo) as id from photo";
     $conn->exec($scr);
-    $id_prod=$conn->insert_id;
+    $id_prod= $conn->lastInsertId();
     /*image*/
     $id_photo=$conn->query($id_photo_scr);
     $id_photo=$id_photo->fetch(PDO::FETCH_ASSOC);
