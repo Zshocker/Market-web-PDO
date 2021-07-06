@@ -216,7 +216,7 @@ $result = $conn->query($scr);
         <center>
             <div class="container">
                 <div class="row">
-                    <button class="mi" onclick=" remove_html_by_id('id_prod');unshow_elem_id('ProdAj');">&times;</button>
+                    <button class="mi" onclick="unshow_elem_id('ProdAj');">&times;</button>
                 </div>
                 <form action="produit.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
