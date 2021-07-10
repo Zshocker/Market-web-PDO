@@ -29,12 +29,7 @@ session_start();
         </div>
     </div>
     <div class="cont-92-5">
-        <div class="sidebar">
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='adminPa.php';">Ajouter des produits</button></div>
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='cat_G.php';">Gestion des categories</button></div>
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListProd.php';"> Afficher les produit</button></div>
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListInscri.php';">Afficher les inscription</button></div>
-        </div>
+        <?php include "OurSidebar.php"?>
         <div class="MainCont">
             <center>
 

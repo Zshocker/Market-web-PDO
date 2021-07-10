@@ -35,36 +35,38 @@ session_start();
             ?>
         </div>
     </div>
-   <div class="cont-92-5">
-        <div class="sidebar">
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ClientPa.php';">Consulter les produits</button></div>
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='PanierPa.php';">Afficher Mon panier</button></div>
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='CommandePa.php';">Afficher Mes Commandes</button></div>
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='MonCompte.php';">Mon Compte</button></div>
-            <?php
-            if ($_SESSION['type_uti'] == 'admin') {
-            ?>
-                <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='adminPa.php';">Gestion des produits</button></div>
-                <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListInscri.php';">Afficher les inscription</button></div>
-                <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListUti.php';">Afficher les utilisateurs</button></div>
-                <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='TousCom.php';"> Tous les Commandes </button></div>
-                
-            <?php
-            }
-            ?>
-        </div>
+    <div class="cont-92-5">
+        <?php include "OurSidebar.php" ?>
         <div class="MainCont">
             <div class="navBar">
-                <input type="text" name="search" class="searchBar" id="searcher" placeholder="Search">
-                <button class="miniBut" onclick="window.location.href='ClientPa.php?search='+Get_Search('searcher');" style="margin-top:8px; width: 30px; height: 32px;"><i class="fa fa-search"></i></button>
+                <input type="text" name="search" class="searchBar" id="searcher" placeholder="Search by name">
+                Categorie:
+                <select id="CatSearch" name="prodCat" style="float: none !important;" class="searchBar" placeholder="Search by Categorie">
+                    <option ></option>
+                    <?php
+                    require_once 'ConnexionToBD.php';
+                    $conn = Conect_ToBD("magasin_en_ligne", "root");
+                    $resultE = $conn->query("Select * from categorie");
+                    while ($qe = $resultE->fetch(PDO::FETCH_ASSOC)) {
+                        $content = $qe['label_cat'];
+                        $id = $qe['id_cat'];
+                        echo "<option value=\"$id\"> $content </option>";
+                    }
+                    CloseCon($conn);
+                    ?>
+                </select>
+                <button class="miniBut" onclick="window.location.href='ClientPa.php?search='+Get_Search('searcher')+'&Cat='+Get_Search('CatSearch')" style="margin-top:8px; width: 30px; height: 32px;"><i class="fa fa-search"></i></button>
+                <button class="miniBut" onclick="window.location.href='ClientPa.php'" style="margin-top:8px; width: 30px; height: 32px;">&times;</button>
+                    
             </div>
             <div>
                 <?php
-                require_once 'ConnexionToBD.php';
-                $conn = Conect_ToBD("magasin_en_ligne", "root");
                 if (isset($_GET['search'])) {
                     $ser = $_GET['search'];
-                    $scr = "SELECT id_prod,Designation,prix_std,reduction,prix_barre FROM produit WHERE Designation LIKE '%$ser%' ORDER BY id_prod ";
+                    if($_GET['Cat']!=''){
+                        $Cat=$_GET['Cat'];
+                        $scr = "SELECT id_prod,Designation,prix_std,reduction,prix_barre FROM produit WHERE Designation LIKE '%$ser%' and id_cat=$Cat ORDER BY id_prod ";
+                    }else  $scr = "SELECT id_prod,Designation,prix_std,reduction,prix_barre FROM produit WHERE Designation LIKE '%$ser%' ORDER BY id_prod ";
                 } else $scr = "SELECT id_prod,Designation,prix_std,reduction,prix_barre FROM produit ORDER BY id_prod ";
                 $result = $conn->query($scr);
 
@@ -109,7 +111,7 @@ session_start();
                                 }
                                 ?>
                                 <span style="font-weight:bold; margin:5px; float:left;"><?php echo $prix;  ?>DH</span>
-                                
+
                             </div>
                         </div>
 
@@ -121,6 +123,7 @@ session_start();
                 ?>
             </div>
         </div>
+
     </div>
 
 

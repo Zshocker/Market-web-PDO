@@ -21,7 +21,9 @@ $result = $conn->query($scr);
     <link rel="StyleSheet" href="tableStyle.css">
 
     <link rel="stylesheet" href="CssFontA/css/all.css">
-    <script>var i=0;</script>
+    <script>
+        var i = 0;
+    </script>
 </head>
 
 <body style="margin:0px;">
@@ -43,23 +45,8 @@ $result = $conn->query($scr);
         </div>
     </div>
 
-   <div class="cont-92-5">
-        <div class="sidebar">
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ClientPa.php';">Consulter les produits</button></div>
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='PanierPa.php';">Afficher Mon panier</button></div>
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='CommandePa.php';">Afficher Mes Commandes</button></div>
-            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='MonCompte.php';">Mon Compte</button></div>
-            <?php
-            if ($_SESSION['type_uti'] == 'admin') {
-            ?>
-                <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='adminPa.php';">Gestion des produits</button></div>
-                <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListInscri.php';">Afficher les inscription</button></div>
-                <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListUti.php';">Afficher les utilisateurs</button></div>
-                <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='TousCom.php';"> Tous les Commandes </button></div>
-            <?php
-            }
-            ?>
-        </div>
+    <div class="cont-92-5">
+        <?php include "OurSidebar.php" ?>
         <div class="MainCont">
             <div class="navBar">
                 <input type="text" name="search" class="searchBar" id="searcher" placeholder="Search by id_commande or adresse ">
@@ -74,6 +61,7 @@ $result = $conn->query($scr);
                             <th>adresse_liv</th>
                             <th>id_uti</th>
                             <th>prix totale</th>
+                            <th> informations commande </th>
                             <th>type paiement</th>
                             <th>etat</th>
                             <th> informations paiement </th>
@@ -97,7 +85,8 @@ $result = $conn->query($scr);
                                 <td><?php echo "$date" ?></td>
                                 <td><?php echo "$adresse" ?></td>
                                 <td><?php echo "$id_uti" ?></td>
-                                <td><?=Get_PrixTot($id_commande);?></td>
+                                <td><?= Get_PrixTot($id_commande); ?></td>
+                                <td><button class="miniBut" style="background-color: aqua;" name="afficher1" onclick="show_elem_id('info_com-<?php echo $id_commande; ?>')"><i class="fa fa-plus"></i></button></td>
                                 <td><?php if ($id_paiementE != '') {
                                         $var = 1;
                                         echo "espece";
@@ -225,8 +214,9 @@ $result = $conn->query($scr);
                                 <label for="etat">Etat commande: </label>
                             </div>
                             <div class="col-75">
-                                
-                                <select name="etat_com" id="etat-<?= $i ?>" required <?php $etat_c = $qe['etat_com']; if($etat_c=='PAYEE') echo"disabled"; ?>> 
+
+                                <select name="etat_com" id="etat-<?= $i ?>" required <?php $etat_c = $qe['etat_com'];
+                                                                                        if ($etat_c == 'PAYEE') echo "disabled"; ?>>
                                     <?php
                                     $scr = "SELECT * from etat_commande";
                                     $result = $conn->query($scr);
@@ -283,23 +273,23 @@ $result = $conn->query($scr);
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
-                                        <tbody id="table-<?=$id_commande?>">
+                                        <tbody id="table-<?= $id_commande ?>">
                                             <?php
                                             $scr = "SELECT * FROM paiement_cheque where id_commande=$id_commande";
                                             $result = $conn->query($scr);
                                             while ($q = $result->fetch(PDO::FETCH_ASSOC)) {
-                                                $id_cheque=$q["id_paiementC"];
+                                                $id_cheque = $q["id_paiementC"];
                                                 $datep = $q['date_paiementC'];
                                                 $datee = $q['date_ech'];
                                                 $montant = $q['montant'];
 
                                             ?>
                                                 <tr>
-                                                    <input type="hidden" name="id_check[]" value="<?=$id_cheque?>">
+                                                    <input type="hidden" name="id_check[]" value="<?= $id_cheque ?>">
                                                     <td><input type="date" id="dateC" value="<?= $datep ?>" disabled></td>
                                                     <td> <input type="date" id="date" name="datee[]" min="<?= $datep ?>" value="<?= $datee ?>" required>
                                                     </td>
-                                                    <td><input type="number" class="numberN" id="num"  min="1" value="<?= $montant ?>" disabled style="text-align:center;"></td>
+                                                    <td><input type="number" class="numberN" id="num" min="1" value="<?= $montant ?>" disabled style="text-align:center;"></td>
 
                                                 </tr>
                                             <?php
@@ -307,7 +297,7 @@ $result = $conn->query($scr);
                                             ?>
                                         <tbody>
                                     </table>
-                                    <button type="button" onclick="Insert_new_check('<?=$id_commande?>')" class="mi"> <i class="fa fa-plus"></i></button>
+                                    <button type="button" onclick="Insert_new_check('<?= $id_commande ?>')" class="mi"> <i class="fa fa-plus"></i></button>
                                 </div>
 
 
@@ -330,20 +320,83 @@ $result = $conn->query($scr);
 
     <?php
     }
-    CloseCon($conn);
+
+    ?>
+    <?php
+    $scr = "SELECT distinct id_commande from commande NATURAL JOIN ligne_commande ";
+    $res = $conn->query($scr);
+    while ($qe = $res->fetch(PDO::FETCH_ASSOC)) {
+        $id_commande = $qe['id_commande'];
+    ?>
+        <div class="modal" id="info_com-<?php echo $id_commande; ?>">
+            <center>
+
+                <div class="container">
+                    <div class="row">
+                        <button class="mi" onclick="unshow_elem_id('info_com-<?php echo $id_commande; ?>');">&times;</button>
+                    </div>
+                    <div class="row">
+                        <div class="table-wrapper">
+                            <table class="fl-table">
+                                <thead>
+                                    <tr>
+                                        <th>produit</th>
+                                        <th>quantité</th>
+                                        <th>réduction</th>
+                                        <th>prix d'achat(1 unite)</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $scr = "SELECT * FROM ligne_commande NATURAL JOIN produit where id_commande=$id_commande";
+                                    $result = $conn->query($scr);
+                                    $mt = 0;
+                                    while ($q = $result->fetch(PDO::FETCH_ASSOC)) {
+                                        $nomp = $q['designation'];
+                                        $qte = $q['quantite'];
+                                        $red = $q['reduction_ins'] * 100;
+                                        $prix = $q['prix_std'] - $q['prix_std'] * $q['reduction_ins'];
+
+                                    ?>
+                                        <tr>
+                                            <td><?php echo "$nomp"; ?></td>
+                                            <td><?php echo "$qte"; ?></td>
+                                            <td><?php echo "$red%"; ?></td>
+                                            <td><?= $prix ?></td>
+
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+                                <tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </center>
+        </div>
+
+
+
+
+
+    <?php
+    }
     ?>
 
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-
-
     function Get_Search(str) {
         return document.getElementById(str).value;
     }
+
     function Insert_new_check(id) {
-        $("#table-"+id).append('<tr id="TAJ-' + i + '"><td><input type="date" id="dateC" name="dateC[]" required></td><td> <input type="date" id="date" name="datee[]" required></td><td><input type="number" id="num" name="montant[]" min="1" style="text-align:center;" class="numberN" required></td><td><button type="button" onclick="remove_html_by_id(\'TAJ-' + i + '\')" ><i class="fa fa-minus" aria-hidden="true"></i></button></td></tr>');
+        $("#table-" + id).append('<tr id="TAJ-' + i + '"><td><input type="date" id="dateC" name="dateC[]" required></td><td> <input type="date" id="date" name="datee[]" required></td><td><input type="number" id="num" name="montant[]" min="1" style="text-align:center;" class="numberN" required></td><td><button type="button" onclick="remove_html_by_id(\'TAJ-' + i + '\')" ><i class="fa fa-minus" aria-hidden="true"></i></button></td></tr>');
         i++;
     }
 </script>

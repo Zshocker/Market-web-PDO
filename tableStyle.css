@@ -52,7 +52,7 @@
 
 /* Responsive */
 
-@media (max-width: 767px) {
+@media (max-width: 1240px) {
     .fl-table {
         display: block;
         width: 100%;
@@ -81,12 +81,12 @@
     }
     .fl-table td, .fl-table th {
         padding: 20px .625em .625em .625em;
-        height: 60px;
+        height: 100px;
         vertical-align: middle;
         box-sizing: border-box;
         overflow-x: hidden;
         overflow-y: auto;
-        width: 120px;
+        width: auto;
         font-size: 13px;
         text-overflow: ellipsis;
     }

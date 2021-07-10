@@ -29,8 +29,7 @@ session_start();
     </div>
   </div>
   <div class="cont-92-5">
-    <div class="sidebar">
-    </div>
+  <?php include "OurSidebar.php"?>
     <div>
       <?php
       require_once 'ConnexionToBD.php';

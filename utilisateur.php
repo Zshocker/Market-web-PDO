@@ -39,7 +39,7 @@ if($_POST)
         $scr1="INSERT INTO panier(id_uti) VALUES($id_cli)";
         $res=$conn->exec($scr1);
         $id_panier= $conn->lastInsertId();
-        $scr1="INSERT INTO utilisateur(id_panier) VALUES($id_panier) where id_uti=$id_cli";
+        $scr1="UPDATE utilisateur SET id_panier=$id_panier where id_uti=$id_cli";
         $conn->exec($scr1);
     
     Send_Login_to($emailu,$login);
