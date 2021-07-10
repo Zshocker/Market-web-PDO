@@ -39,17 +39,20 @@ $result = $conn->query($scr);
         </div>
     </div>
 
-    <div class="cont-92-5">
+   <div class="cont-92-5">
         <div class="sidebar">
             <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ClientPa.php';">Consulter les produits</button></div>
             <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='PanierPa.php';">Afficher Mon panier</button></div>
             <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='CommandePa.php';">Afficher Mes Commandes</button></div>
+            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='MonCompte.php';">Mon Compte</button></div>
             <?php
             if ($_SESSION['type_uti'] == 'admin') {
             ?>
                 <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='adminPa.php';">Gestion des produits</button></div>
                 <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListInscri.php';">Afficher les inscription</button></div>
                 <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListUti.php';">Afficher les utilisateurs</button></div>
+                <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='TousCom.php';"> Tous les Commandes </button></div>
+
             <?php
             }
             ?>
@@ -94,13 +97,8 @@ $result = $conn->query($scr);
                                 <td><?php echo "$adresse" ?></td>
                                 <td>
                                     <?php
-                                    $scr = "SELECT * FROM ligne_commande NATURAL JOIN produit where id_commande=$id_commande";
-                                    $resulta= $conn->query($scr);
-                                    $prixTot=0;
-                                    while($qe=$resulta->fetch(PDO::FETCH_ASSOC))
-                                    {
-                                        $prixTot+=($qe['prix_std']-$qe['prix_std']*$qe['reduction_ins'])*$qe['quantite'];
-                                    }
+                                    require_once 'Myfonctions.php';
+                                    $prixTot=Get_PrixTot($id_commande);
                                     echo $prixTot;
 
                                     ?>
@@ -127,9 +125,11 @@ $result = $conn->query($scr);
                                             $res = $conn->query($scr);
                                             $res = $res->fetch(PDO::FETCH_ASSOC);
                                             $tp = $res['date_paiementE'];
-                                            echo " date de paiement:$tp";
+                                            if($tp!='')echo "date de paiement: $tp";
+                                            else  echo "Pas encore payee";
                                         } elseif ($var == 3) {
                                         ?>
+                                        Les cheque:
                                         <button class="miniBut" style="background-color: aqua;" name="afficher" onclick="show_elem_id('info_cheque-<?php echo $id_commande; ?>')"><i class="fa fa-plus"></i></button>
                                     <?php
 

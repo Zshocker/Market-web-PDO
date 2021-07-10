@@ -2,13 +2,11 @@
 session_start();
 require_once 'ConnexionToBD.php';
 $conn = Conect_ToBD("magasin_en_ligne", "root");
-if(isset($_GET['search']))
-{
-    $search=$_GET['search'];
+if (isset($_GET['search'])) {
+    $search = $_GET['search'];
     $scr = "SELECT id_uti,nom,prenom,email,adresse,login,tele,date_inscris,ville,type_uti FROM type_uti NATURAL JOIN utilisateur NATURAL JOIN ville where nom like '%$search%' or prenom like '%$search%' ORDER BY id_uti ";
-}
-else
-$scr = "SELECT id_uti,nom,prenom,email,adresse,login,tele,date_inscris,ville,type_uti FROM type_uti NATURAL JOIN utilisateur NATURAL JOIN ville  ORDER BY id_uti ";
+} else
+    $scr = "SELECT id_uti,nom,prenom,email,adresse,login,tele,date_inscris,ville,type_uti FROM type_uti NATURAL JOIN utilisateur NATURAL JOIN ville  ORDER BY id_uti ";
 $result = $conn->query($scr);
 ?>
 
@@ -20,7 +18,7 @@ $result = $conn->query($scr);
     <link rel="StyleSheet" href="styleForInscrip.css">
     <link rel="StyleSheet" href="tableStyle.css">
 
-    <link rel="stylesheet"  href="CssFontA/css/all.css">
+    <link rel="stylesheet" href="CssFontA/css/all.css">
 </head>
 
 <body style="margin:0px;">
@@ -50,14 +48,16 @@ $result = $conn->query($scr);
             <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='adminPa.php';">Gestion des produits</button></div>
             <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListInscri.php';">Afficher les inscription</button></div>
             <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListUti.php';">Afficher les utilisateurs</button></div>
-            
+            <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='TousCom.php';"> Tous les Commandes </button></div>
+
+
         </div>
-            <div class="MainCont">
-                <div class="navBar">
-                    <input type="text" name="search" class="searchBar" id="searcher" placeholder="Search">
-                    <button type="submit" class="miniBut" onclick="window.location.href='ListUti.php?search='+Get_Search('searcher');" style="margin-top:8px; width: 30px; height: 32px;"><i class="fa fa-search"></i></button>
-                    <button class="mi" onclick="show_elem_id('Ajuti')" style="background-color:hsl(120, 100%, 75%);"><i class="fa fa-plus" aria-hidden="true"></i>&emsp;Ajouter des utilisateurs</button>
-                </div>
+        <div class="MainCont">
+            <div class="navBar">
+                <input type="text" name="search" class="searchBar" id="searcher" placeholder="Search">
+                <button type="submit" class="miniBut" onclick="window.location.href='ListUti.php?search='+Get_Search('searcher');" style="margin-top:8px; width: 30px; height: 32px;"><i class="fa fa-search"></i></button>
+                <button class="mi" onclick="show_elem_id('Ajuti')" style="background-color:hsl(120, 100%, 75%);"><i class="fa fa-plus" aria-hidden="true"></i>&emsp;Ajouter des utilisateurs</button>
+            </div>
             <div class="table-wrapper">
                 <table class="fl-table">
                     <thead>
@@ -72,7 +72,7 @@ $result = $conn->query($scr);
                             <th>date_inscription</th>
                             <th>type</th>
                             <th>action</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
@@ -83,12 +83,12 @@ $result = $conn->query($scr);
                             $prenom = $qe['prenom'];
                             $email = $qe['email'];
                             $adresse = $qe['adresse'];
-                            $login=$qe['login'];
+                            $login = $qe['login'];
                             //$mdp = $qe['mdpI'];
                             $tele = $qe['tele'];
                             $date = $qe['date_inscris'];
                             $ville = $qe['ville'];
-                            $type=$qe['type_uti'];
+                            $type = $qe['type_uti'];
                             //$id_panier=$qe['id_panier'];
 
 
@@ -103,17 +103,17 @@ $result = $conn->query($scr);
                                 <td><?php echo "$tele" ?></td>
                                 <td><?php echo "$date" ?></td>
                                 <td><?php echo "$type" ?></td>
-                                
+
 
                                 <td>
                                     <?php
-                                    if($type!="admin"){
+                                    if ($type != "admin") {
                                     ?>
-                                    <form method="POST" action="uti_D_I.php">
-                                        <input type="hidden" name="id_uti" value="<?php echo $id_uti; ?>">
-                                        <button class="miniBut" style="background-color: red;" name="Delete" onclick="return confirm('Are you sure?');"><i class="fa fa-trash"></i></button>
+                                        <form method="POST" action="uti_D_I.php">
+                                            <input type="hidden" name="id_uti" value="<?php echo $id_uti; ?>">
+                                            <button class="miniBut" style="background-color: red;" name="Delete" onclick="return confirm('Are you sure?');"><i class="fa fa-trash"></i></button>
 
-                                    </form>
+                                        </form>
                                     <?php
                                     }
                                     ?>
@@ -125,7 +125,7 @@ $result = $conn->query($scr);
                     <tbody>
                 </table>
             </div>
-            </div>
+        </div>
     </div>
     <div class="modal" id='Ajuti'>
         <center>
@@ -161,10 +161,10 @@ $result = $conn->query($scr);
 
                     <div class="row">
                         <div class="col-25">
-                            <label for="adresseu"> Adresee </label>
+                            <label for="adresse">Adresse</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="adresse" name="adresse" required>
+                            <textarea id="adresse" name="adresse"style="height:200px" maxlength="100" required></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -190,7 +190,7 @@ $result = $conn->query($scr);
                         </div>
                         <div class="col-75">
                             <select id="type" name="type" required>
-                                <option ></option>
+                                <option></option>
                                 <?php
 
                                 $resultE = $conn->query("Select * from type_uti");
@@ -209,17 +209,17 @@ $result = $conn->query($scr);
                             <label for="ville">Ville:</label>
                         </div>
                         <div class="col-75">
-                        <select id="ville" name="ville">
-                            <?php
-                            $result = $conn->query("Select * from ville");
-                            while ($qe = $result->fetch(PDO::FETCH_ASSOC)) {
-                            $content = $qe['ville'];
-                            $id = $qe['id_ville'];
-                            echo "<option value=\"$id\"> $content </option>";
-                            }
-                            CloseCon($conn);
-                            ?>
-                        </select>
+                            <select id="ville" name="ville">
+                                <?php
+                                $result = $conn->query("Select * from ville");
+                                while ($qe = $result->fetch(PDO::FETCH_ASSOC)) {
+                                    $content = $qe['ville'];
+                                    $id = $qe['id_ville'];
+                                    echo "<option value=\"$id\"> $content </option>";
+                                }
+                                CloseCon($conn);
+                                ?>
+                            </select>
                         </div>
                     </div>
                     <div class="row">
@@ -234,10 +234,9 @@ $result = $conn->query($scr);
 
 </body>
 <script>
-    function Get_Search(str)
-        {
-            return document.getElementById(str).value;
-        }
+    function Get_Search(str) {
+        return document.getElementById(str).value;
+    }
 </script>
 
 </html>

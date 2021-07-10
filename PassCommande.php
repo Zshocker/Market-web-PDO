@@ -1,24 +1,8 @@
 <?php
 session_start();
-
-function getRed($id,$conn2)
-{
-    $scr="SELECT reduction from produit where id_prod=$id";
-    $res=$conn2->query($scr);
-    $red=$res->fetch(PDO::FETCH_ASSOC);
-    return $red['reduction'];
-}
-function getQtePanier($id,$conn2,$id_pan)
-{
-
-    $scr="SELECT qte from avoir_pan_pro where id_prod=$id and id_panier=$id_pan";
-    $res=$conn2->query($scr);
-    $red=$res->fetch(PDO::FETCH_ASSOC);
-    return $red['qte'];
-}
-
-var_dump($_POST);
+require_once 'Myfonctions.php';
 require_once 'ConnexionToBD.php';
+var_dump($_POST);
 if(isset($_POST['Confirm']))
 {   
     $id_uti=$_SESSION['id_uti'];
@@ -28,7 +12,7 @@ if(isset($_POST['Confirm']))
     $type_paiment=intval($_POST["type_Paiment"]);
     $address_liv=$_POST["adresse"];
     $date_com=date("Y-m-d");
-    $scr="INSERT INTO commande(date_com,adresse_liv,id_etat,id_uti) values('$date_com','$address_liv',1,$id_uti)";
+    $scr="INSERT INTO commande(date_com,adresse_liv,id_etat,id_uti) values('$date_com','$address_liv',(SELECT id_etat from etat_commande where etat_com='EN COURS DE TRAIT'),$id_uti)";
     $conn->exec($scr);
     $id_Comm= $conn->lastInsertId();
     if($type_paiment==1)
@@ -56,6 +40,11 @@ if(isset($_POST['Confirm']))
     { 
         $id_prod=$tab_Prod[$i];
         $qte=$tab_Qte[$i];
+        $qte_stock=Get_qte($id_prod);
+        if($qte_stock<$qte){
+            $scr="UPDATE commande SET id_etat=(SELECT id_etat from etat_commande where etat_com='EN ATTENTE D\'ALIMENTATION DU STOCK') where id_commande=$id_Comm ";
+            $conn->exec($scr);
+        }
         $red=getRed($id_prod,$conn);
         $scr="INSERT INTO ligne_commande(reduction_ins,quantite,id_commande,id_prod) VALUES($red,$qte,$id_Comm,$id_prod)";
         $conn->exec($scr);

@@ -23,7 +23,7 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="CssFontA/css/all.css">
 </head>
 
-<body>
+<body style="margin:0px;">
     <div class="bar">
         <div style=" height:100%;">
             <a href="index.php"><img src="rw-markets.png" style="width:auto; height:75%; margin-left:25px;"></a>
@@ -40,12 +40,13 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
         </div>
     </div>
 
-    <div class="cont-92-5">
+   <div class="cont-92-5">
         <div class="sidebar">
             <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ClientPa.php';">Consulter les produits</button></div>
             <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='PanierPa.php';">Afficher Mon panier</button></div>
             <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='CommandePa.php';">Afficher Mes Commandes</button></div>
             <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='MonCompte.php';">Mon Compte</button></div>
+            
 
             <?php
             if ($_SESSION['type_uti'] == 'admin') {
@@ -89,15 +90,15 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
                             <input type="text" id="email" name="email" value="<?php echo $qe['email'] ?>" required>
                         </div>
                     </div>
-
                     <div class="row">
                         <div class="col-25">
-                            <label for="adresse"> Adresee </label>
+                            <label for="adresse">Adresse</label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="adresse" name="adresse" value="<?php echo $qe['adresse'] ?>" required>
+                            <textarea id="adresse" name="adresse" style="height:200px" maxlength="100" required><?php echo $qe['adresse'] ?></textarea>
                         </div>
                     </div>
+                    
                     <div class="row">
                         <div class="col-25">
                             <label for="adresseu"> Login </label>

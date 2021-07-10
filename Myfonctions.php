@@ -15,4 +15,31 @@ $qte_stock=$qteAch-$qteCom;
 CloseCon($conn);
 return $qte_stock;
 }
+function getRed($id,$conn2)
+{
+    $scr="SELECT reduction from produit where id_prod=$id";
+    $res=$conn2->query($scr);
+    $red=$res->fetch(PDO::FETCH_ASSOC);
+    return $red['reduction'];
+}
+function getQtePanier($id,$conn2,$id_pan)
+{
+
+    $scr="SELECT qte from avoir_pan_pro where id_prod=$id and id_panier=$id_pan";
+    $res=$conn2->query($scr);
+    $red=$res->fetch(PDO::FETCH_ASSOC);
+    return $red['qte'];
+}
+function Get_PrixTot($id_Com)
+{
+$conn = Conect_ToBD("magasin_en_ligne", "root");
+$scr = "SELECT * FROM ligne_commande NATURAL JOIN produit where id_commande=$id_Com";
+$resulta= $conn->query($scr);
+$prixTot=0;
+while($qe=$resulta->fetch(PDO::FETCH_ASSOC))
+{
+    $prixTot+=($qe['prix_std']-$qe['prix_std']*$qe['reduction_ins'])*$qe['quantite'];
+}
+return $prixTot;
+}
 ?>
