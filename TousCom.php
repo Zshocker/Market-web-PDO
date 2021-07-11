@@ -14,7 +14,8 @@ $result = $conn->query($scr);
 
 <html>
 
-<head>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Les inscriptions</title>
     <script src="JS Scripts/name.js"></script>
     <link rel="StyleSheet" href="styleForInscrip.css">
@@ -24,7 +25,8 @@ $result = $conn->query($scr);
     <script>
         var i = 0;
     </script>
-</head>
+</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body style="margin:0px;">
     <div class="bar">
@@ -54,7 +56,8 @@ $result = $conn->query($scr);
             </div>
             <div class="table-wrapper">
                 <table class="fl-table">
-                    <thead>
+                    <thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <tr>
                             <th>id_commande</th>
                             <th>date_com</th>
@@ -67,7 +70,8 @@ $result = $conn->query($scr);
                             <th> informations paiement </th>
                             <th> modifier informations</th>
                         </tr>
-                    </thead>
+                    </thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <tbody>
                         <?php
                         while ($qe = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -148,14 +152,16 @@ $result = $conn->query($scr);
                     <div class="row">
                         <div class="table-wrapper">
                             <table class="fl-table">
-                                <thead>
+                                <thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                     <tr>
                                         <th>date paiement</th>
                                         <th>date encaissment</th>
                                         <th>Montant</th>
 
                                     </tr>
-                                </thead>
+                                </thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                 <tbody>
                                     <?php
                                     $scr = "SELECT * FROM paiement_cheque where id_commande=$id_commande";
@@ -265,14 +271,16 @@ $result = $conn->query($scr);
 
                                 <div class="table-wrapper">
                                     <table class="fl-table">
-                                        <thead>
+                                        <thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                             <tr>
                                                 <th>date paiement</th>
                                                 <th>date encaissment</th>
                                                 <th>Montant</th>
                                                 <th>Actions</th>
                                             </tr>
-                                        </thead>
+                                        </thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                         <tbody id="table-<?= $id_commande ?>">
                                             <?php
                                             $scr = "SELECT * FROM paiement_cheque where id_commande=$id_commande";
@@ -338,7 +346,8 @@ $result = $conn->query($scr);
                     <div class="row">
                         <div class="table-wrapper">
                             <table class="fl-table">
-                                <thead>
+                                <thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                     <tr>
                                         <th>produit</th>
                                         <th>quantité</th>
@@ -346,7 +355,8 @@ $result = $conn->query($scr);
                                         <th>prix d'achat(1 unite)</th>
 
                                     </tr>
-                                </thead>
+                                </thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                 <tbody>
                                     <?php
                                     $scr = "SELECT * FROM ligne_commande NATURAL JOIN produit where id_commande=$id_commande";

@@ -9,7 +9,8 @@ $result = $conn->query($scr);
 
 <html>
 
-<head>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Les produits</title>
     <script src="JS Scripts/name.js"></script>
     <link rel="StyleSheet" href="styleForInscrip.css">
@@ -17,7 +18,8 @@ $result = $conn->query($scr);
     <link rel="StyleSheet" href="prods.css">
     <link rel="stylesheet" href="CssFontA/css/all.css">
     
-</head>
+</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body style="margin:0px;">
     <div class="bar">
@@ -45,7 +47,8 @@ $result = $conn->query($scr);
             <div class="table-wrapper">
                 <center>
                     <table class="fl-table">
-                        <thead>
+                        <thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                             <tr>
                                 <th>Confirmer</th>
                                 <th>image</th>
@@ -56,7 +59,8 @@ $result = $conn->query($scr);
                                 <th>categorie</th>
                                 <th>actions</th>
                             </tr>
-                        </thead>
+                        </thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <tbody>
                             <?php
                             while ($qe = $result->fetch(PDO::FETCH_ASSOC)) {

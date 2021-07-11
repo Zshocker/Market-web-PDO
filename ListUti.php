@@ -12,14 +12,16 @@ $result = $conn->query($scr);
 
 <html>
 
-<head>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Les inscriptions</title>
     <script src="JS Scripts/name.js"></script>
     <link rel="StyleSheet" href="styleForInscrip.css">
     <link rel="StyleSheet" href="tableStyle.css">
 
     <link rel="stylesheet" href="CssFontA/css/all.css">
-</head>
+</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body style="margin:0px;">
     <div class="bar">
@@ -50,7 +52,8 @@ $result = $conn->query($scr);
             </div>
             <div class="table-wrapper">
                 <table class="fl-table">
-                    <thead>
+                    <thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                         <tr>
                             <th>Nom</th>
                             <th>Prenom</th>
@@ -64,7 +67,8 @@ $result = $conn->query($scr);
                             <th>action</th>
 
                         </tr>
-                    </thead>
+                    </thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                     <tbody>
                         <?php
                         while ($qe = $result->fetch(PDO::FETCH_ASSOC)) {

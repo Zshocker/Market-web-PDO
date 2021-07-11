@@ -14,14 +14,16 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
 
 <html>
 
-<head>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Compte</title>
     <script src="JS Scripts/name.js"></script>
     <link rel="StyleSheet" href="styleForInscrip.css">
     <link rel="StyleSheet" href="tableStyle.css">
 
     <link rel="stylesheet" href="CssFontA/css/all.css">
-</head>
+</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body style="margin:0px;">
     <div class="bar">

@@ -4,7 +4,8 @@ session_start();
 ?>
 <html>
 
-<head>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscipt</title>
 
     <link rel="StyleSheet" href="styleForInscrip.css">
@@ -16,7 +17,8 @@ session_start();
             return document.getElementById(str).value;
         }
     </script>
-</head>
+</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body style="margin:0px;">
 

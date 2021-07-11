@@ -11,14 +11,16 @@ if ($_POST) {
 ?>
     <html>
 
-    <head>
+    <head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Commade</title>
 
         <link rel="StyleSheet" href="styleForInscrip.css">
         <link rel="StyleSheet" href="prods.css">
         <link rel="StyleSheet" href="tableStyle.css">
         <script src="JS Scripts/name.js"></script>
-    </head>
+    </head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <body style="margin:0px;">
 
@@ -52,12 +54,14 @@ if ($_POST) {
                         }
                         ?>
                         <table class="fl-table">
-                            <thead>
+                            <thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                                 <tr>
                                     <th colspan=3>Detail</th>
                                     <th>prix</th>
                                 </tr>
-                            </thead>
+                            </thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
                             <tbody>
 
                                 <?php

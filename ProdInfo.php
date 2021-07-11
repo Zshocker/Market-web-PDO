@@ -4,12 +4,14 @@ require_once 'Myfonctions.php';
 ?>
 <html>
 
-<head>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscipt</title>
     <link rel="StyleSheet" href="styleForInscrip.css">
     <link rel="StyleSheet" href="prods.css">
     <link rel="stylesheet" href="CssFontA/css/all.css">
-</head>
+</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <body style="margin:0px;">
 
