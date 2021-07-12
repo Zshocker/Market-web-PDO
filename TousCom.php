@@ -90,7 +90,7 @@ $result = $conn->query($scr);
                                 <td><?php echo "$adresse" ?></td>
                                 <td><?php echo "$id_uti" ?></td>
                                 <td><?= Get_PrixTot($id_commande); ?></td>
-                                <td><button class="miniBut" style="background-color: aqua;" name="afficher1" onclick="show_elem_id('info_com-<?php echo $id_commande; ?>')"><i class="fa fa-plus"></i></button></td>
+                                <td><button class="miniBut"  name="afficher1" onclick="show_elem_id('info_com-<?php echo $id_commande; ?>')"><i class="fa fa-plus"></i></button></td>
                                 <td><?php if ($id_paiementE != '') {
                                         $var = 1;
                                         echo "espece";
@@ -120,12 +120,12 @@ $result = $conn->query($scr);
                                         } elseif ($var == 3) {
                                         ?>
                                         Les cheque:
-                                        <button class="miniBut" style="background-color: aqua;" name="afficher" onclick="show_elem_id('info_cheque-<?php echo $id_commande; ?>')"><i class="fa fa-plus"></i></button>
+                                        <button class="miniBut"  name="afficher" onclick="show_elem_id('info_cheque-<?php echo $id_commande; ?>')"><i class="fa fa-plus"></i></button>
                                     <?php
 
                                         }  ?>
                                 </td>
-                                <td> <button class="miniBut" style="background-color: aqua;" name="modifier" onclick="show_elem_id('info_mod-<?php echo $id_commande; ?>')"><i class="fa fa-edit"></i></button> </td>
+                                <td> <button class="miniBut"  name="modifier" onclick="show_elem_id('info_mod-<?php echo $id_commande; ?>')"><i class="fa fa-edit"></i></button> </td>
                             </tr>
                         <?php
                         }
@@ -399,7 +399,7 @@ $result = $conn->query($scr);
 
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="JS scripts/jquery.min.js"></script>
 <script>
     function Get_Search(str) {
         return document.getElementById(str).value;

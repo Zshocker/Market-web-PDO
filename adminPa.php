@@ -51,8 +51,8 @@ $result = $conn->query($scr);
             <div class="navBar">
                 <input type="text" name="search" class="searchBar" id="searcher" placeholder="Search">
                 <button type="submit" class="miniBut" onclick="window.location.href='adminPa.php?search='+Get_Search('searcher');" style="margin-top:8px; width: 30px; height: 32px;"><i class="fa fa-search"></i></button>
-                <button class="mi" onclick="show_elem_id('ProdAj')" style="background-color:#1ebb2b;"><i class="fa fa-plus" aria-hidden="true"></i>&emsp;Ajouter des produits</button>
-                <button class="mi" onclick="show_elem_id('GestCat')" style="background-color:#1ebb2b;">Gestion des categories</button>
+                <button class="mi" onclick="show_elem_id('ProdAj')" ><i class="fa fa-plus" aria-hidden="true"></i>&emsp;Ajouter des produits</button>
+                <button class="mi" onclick="show_elem_id('GestCat')" >Gestion des categories</button>
             </div>
             <div class="table-wrapper">
                 <center>
@@ -393,7 +393,7 @@ $result = $conn->query($scr);
 
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="JS scripts/jquery.min.js"></script>
     <script>
         function insert_value_prod(PName, PRed, PCat, Pdesc, PprixF) {
             document.getElementById('name').value = PName;

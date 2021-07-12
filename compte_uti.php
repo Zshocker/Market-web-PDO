@@ -13,7 +13,7 @@ if($_POST)
     $log=$_POST['login'];
     $mdp=md5($_POST['mdp']);
     $tel=$_POST['tele'];
-    if($mdp==""){
+    if($_POST['mdp']==""){
         $scr="UPDATE utilisateur SET nom='$name',prenom='$pname',email='$mail',adresse='$adr',login='$log',tele='$tel' where id_uti=$id";
     }
      else{

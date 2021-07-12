@@ -22,7 +22,9 @@
     cursor: pointer;
     float: right;
     margin-left: 2.5px;
-    margin-right:2.5px
+    margin-right:2.5px;
+    background-color:rgb(226, 196, 219);
+    border-color: #888185;
 
   }
   
@@ -30,7 +32,7 @@
   .container {
     width: 50%;
     border-radius: 5px;
-    background-color: #05b4ff;
+    background-image: linear-gradient(to bottom, #882c5f, #8d4069);
     padding: 20px;
   }
   
@@ -95,7 +97,8 @@
   .bar {
     height: 10%;
     width: 100%;
-    background-color: #385980;
+    /*background-color: #d4e684;*/
+    background-image: linear-gradient(to bottom, #752651, #5e2142);
     
   }
   .cont-92-5
@@ -103,14 +106,16 @@
     display:inline-table;
     height:90%;
     width: 100%;
-    background-color:#dfe6e9;
+    /*background-color:#dfe6e9;*/
+    /*background-color:#E8CADB;*/
+    background-color:rgb(250, 246, 231);
   }
   .sidebar
   {
     float:left;
     height:100%;
     width: 15%;
-    background-color: #9e9d83;
+    background-image: linear-gradient(to bottom, #8d2e62, #8b3262);
   }
   .MainCont
   {
@@ -118,7 +123,8 @@
     /*height:100%;*/
     width: 85%;
     border:0px;
-    background-color:#dfe6e9;
+    /*background-color:#dfe6e9;*/
+    background-color: rgb(250, 246, 231);
   }
   .navBar
   {
@@ -128,7 +134,7 @@
     /*height: 7.5%;*/
     padding-top: 15px;
     padding-bottom: 15px;
-    background-color:#c6e5f3;
+    background-color:#AD3671;
   }
   .miniBut
   {
@@ -137,6 +143,8 @@
     width: 30px;
     height: 30px;
     color: #0B131C;
+    background-color:rgb(226, 196, 219);
+    border-color: #888185;
   }
 
   .miniBut:hover{
@@ -146,27 +154,33 @@
   {
     height: 100%;
     width: 100%;
-    background-color:#9c9b85;
+    background-color:#8d2e62;
     border: 0px;
-    color:#0B131C;
+    color:rgb(216, 196, 196);
+    font-size: 14px;
   }
   .sideBut:hover
   {
     cursor: pointer;
-    background-color:#5c5b4e;
+    border: 1px solid ;
+    border-radius: 2px;
+    background-color:rgb(226, 196, 219);
+    border-color: #721649;
+    color:#0B131C;
   }
   .sideBDiv
   {
     height: 40px;
     width: 100%;
-    background-color:#9c9b85;
+    background-color:#880d5f;
+    margin-top: 5%;
   }
  .searchBar{
     width: 25% !important; 
     float: left !important;
     padding: 6px !important;
     margin-top: 8px !important;
-    margin-right: 8px !important;
+    margin-right: 15px !important;
     margin-left: 2px !important;
     border: none !important;
     font-size: 17px !important;
@@ -206,10 +220,11 @@
   .MainImageS
   {
     width: 80%;
-    height:80%;
+    /*height:80%;*/
+    MAX-HEIGHT: 60%;
     border-radius:10%;
     margin: 9.5%;
-    margin-top:0;
+    margin-top:6%;
     background-color: #05b4ff;
   }
   .SwipeBar{

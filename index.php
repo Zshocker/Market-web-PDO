@@ -137,7 +137,9 @@ session_start();
               <label for="ville">Ville:</label>
             </div>
             <div class="col-75">
-              <select id="ville" name="ville">
+                
+              <select id="ville" name="ville" required>
+                <option> </option>
                 <?php
                 $result = $conn->query("Select * from ville");
                 while ($qe = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -155,7 +157,7 @@ session_start();
               <label for="adresse">Adresse</label>
             </div>
             <div class="col-75">
-              <textarea id="adresse" name="adresse" placeholder="Write something.." style="height:200px" maxlength="100" required></textarea>
+              <textarea id="adresse" name="adresse" placeholder="Write something.." style="height:100px" maxlength="100" required></textarea>
             </div>
           </div>
           <div class="row">

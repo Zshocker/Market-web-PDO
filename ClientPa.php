@@ -41,8 +41,8 @@ session_start();
         <?php include "OurSidebar.php" ?>
         <div class="MainCont">
             <div class="navBar">
-                <input type="text" name="search" class="searchBar" id="searcher" placeholder="Search by name">
-                Categorie:
+                <input type="text" name="search" style="margin-right: 80px!important" class="searchBar" id="searcher" placeholder="Search by name">
+                <span style="font-size: 20px">Categorie:</span>
                 <select id="CatSearch" name="prodCat" style="float: none !important;" class="searchBar" placeholder="Search by Categorie">
                     <option ></option>
                     <?php

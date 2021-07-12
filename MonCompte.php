@@ -6,7 +6,7 @@ $conn = Conect_ToBD("magasin_en_ligne", "root");
 $id_uti = $_SESSION['id_uti'];
 
 
-$scr = "SELECT id_uti,nom,prenom,email,adresse,login,mdp,tele FROM utilisateur where id_uti=$id_uti ";
+$scr = "SELECT id_uti,nom,prenom,email,adresse,login,mdp,tele,id_ville FROM utilisateur where id_uti=$id_uti ";
 $result = $conn->query($scr);
 $qe=$result->fetch(PDO::FETCH_ASSOC);
 
@@ -82,7 +82,26 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
                             <textarea id="adresse" name="adresse" style="height:200px" maxlength="100" required><?php echo $qe['adresse'] ?></textarea>
                         </div>
                     </div>
-                    
+                    <div class="row">
+            <div class="col-25">
+              <label for="ville">Ville:</label>
+            </div>
+            <div class="col-75"> 
+              <select id="ville" name="ville" >
+                <?php
+                $result = $conn->query("Select * from ville");
+                while ($q = $result->fetch(PDO::FETCH_ASSOC)) {
+                  $content = $q['ville'];
+                  $id = $q['id_ville'];
+                  if($id==$qe['id_ville'])
+                   echo "<option value=\"$id\" selected> $content </option>";
+                  else echo "<option value=\"$id\"> $content </option>";
+                }
+                
+                ?>
+              </select>
+            </div>
+          </div>
                     <div class="row">
                         <div class="col-25">
                             <label for="adresseu"> Login </label>

@@ -118,13 +118,13 @@ $result = $conn->query($scr);
                                         } elseif ($var == 3) {
                                         ?>
                                         Les cheque:
-                                        <button class="miniBut" style="background-color: aqua;" name="afficher" onclick="show_elem_id('info_cheque-<?php echo $id_commande; ?>')"><i class="fa fa-plus"></i></button>
+                                        <button class="miniBut" style="background-color: #CE88AC;" name="afficher" onclick="show_elem_id('info_cheque-<?php echo $id_commande; ?>')"><i class="fa fa-plus"></i></button>
                                     <?php
 
                                         }  ?>
                                 </td>
                                 <td>
-                                    <button class="miniBut" style="background-color: aqua;" name="afficher1" onclick="show_elem_id('info_com-<?php echo $id_commande; ?>')"><i class="fa fa-plus"></i></button>
+                                    <button class="miniBut" style="background-color: #CE88AC;" name="afficher1" onclick="show_elem_id('info_com-<?php echo $id_commande; ?>')"><i class="fa fa-plus"></i></button>
 
                                 </td>
 

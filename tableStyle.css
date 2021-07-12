@@ -52,7 +52,7 @@
 
 /* Responsive */
 
-@media (max-width:1350px) {
+@media (max-width:1200px) {
     .fl-table {
         display: block;
         width: 100%;

@@ -4,7 +4,7 @@
     width :250px;
     height:400px;
     margin: 10px;
-    background-color: #b1def1;
+    background-color: rgb(231, 229, 229);
     border-radius: 20px;
     border-color: rgb(39, 39, 195);
 }
@@ -46,7 +46,7 @@
 .reductionCls
 {
    position: absolute;
-   border-radius: 35%;
-   background-color:rgb(6, 219, 6);
+   border-radius: 10%;
+   background-color:rgb(6, 219, 191);
 }
 
