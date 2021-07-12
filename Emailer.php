@@ -15,7 +15,7 @@ function Send_Email_to($recv, $content,$subject)
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
         $mail->isSMTP();  //Send using SMTP
         // $mail->Mailer = "smtp";                                          
-        $mail->SMTPDebug  = 1;
+        $mail->SMTPDebug  = 10;
         $mail->SMTPAuth   = true;
         $mail->SMTPSecure = "ssl";
         $mail->Port       = '465';

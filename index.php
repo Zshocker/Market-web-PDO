@@ -1,42 +1,44 @@
 <?php
 session_start();
-
+if(isset($_GET['wR']))echo"<script>
+alert('Wrong Login or Password');
+window.location.href='index.php';
+</script>";
 ?>
 <html>
 
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inscipt</title>
 
   <link rel="StyleSheet" href="styleForInscrip.css">
   <link rel="StyleSheet" href="prods.css">
   <script src="JS Scripts/name.js"></script>
-</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <body style="margin:0px;">
 
   <div class="bar">
     <div style="padding-top:15px ; height:100%;">
-    <a href="index.php"><img src="rw-markets.png" style="width:auto; height:75%; margin-left:25px;"></a>
+      <a href="index.php"><img src="rw-markets.png" style="width:auto; height:75%; margin-left:25px;"></a>
       <?php if (!isset($_SESSION['id_uti'])) { ?>
         <button class="mi" onclick="show_elem_id('inscrip')">Sign Up</button>
         <button class="mi" onclick="show_elem_id('Login')" style="margin-Right: 5px;">Log In</button>
       <?php
-      }
-      else{
-        header("Location: clientPa.php",true,301 );
+      } else {
+        header("Location: clientPa.php", true, 301);
       }
       ?>
     </div>
   </div>
   <div class="cont-92-5">
-  <?php include "OurSidebar.php"?>
+    <?php include "OurSidebar.php" ?>
     <div>
       <?php
       require_once 'ConnexionToBD.php';
       $conn = Conect_ToBD("magasin_en_ligne", "root");
-      $scr = "SELECT id_prod,Designation,prix_std,reduction FROM produit ORDER BY id_prod ";
+      $scr = "SELECT id_prod,Designation,prix_std,reduction,prix_barre FROM produit ORDER BY id_prod ";
       $result = $conn->query($scr);
 
       while ($qe = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -47,6 +49,7 @@ session_start();
         $imag = $rs['photo'];
         $name = $qe['Designation'];
         $prix = $qe['prix_std'];
+        $prixF = $qe['prix_barre'];
         $red = floatval($qe['reduction']);
         $red = $red * 100;
       ?>
@@ -71,7 +74,15 @@ session_start();
               <center><a class="Prod_name" href="ProdInfo.php?id=<?php echo $id_prod;  ?>"><span> <?php echo $name;  ?></span></a></center>
             </div>
             <div style="margin-top: 25px; margin-left: 5px; margin-right:5px;">
+              <?php
+              if ($prixF != "0" && $prixF != '') {
+              ?>
+                <del style="font-weight:bold; margin:5px; float:left;"><?php echo $prixF;  ?>DH</del>
+              <?php
+              }
+              ?>
               <span style="font-weight:bold; margin:5px; float:left;"><?php echo $prix;  ?>DH</span>
+
             </div>
           </div>
 
@@ -137,7 +148,7 @@ session_start();
               <label for="ville">Ville:</label>
             </div>
             <div class="col-75">
-                
+
               <select id="ville" name="ville" required>
                 <option> </option>
                 <?php

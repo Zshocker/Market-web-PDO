@@ -22,8 +22,7 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
     <link rel="StyleSheet" href="tableStyle.css">
 
     <link rel="stylesheet" href="CssFontA/css/all.css">
-</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <body style="margin:0px;">
     <div class="bar">
@@ -34,7 +33,7 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
             } else {
                 ?>
                 <form method="POST" action="LogMeOut.php" style="float:right; margin:0px">
-                    <input type="submit" value="logout" name="Logout" class="mi" onclick="return confirm('Are you sure?');">
+                     <input type="submit" value="logout" name="Logout" style="margin-top:15px; margin-right: 15px;" class="mi" onclick="return confirm('Are you sure?');">
                 </form>
             <?php
         }

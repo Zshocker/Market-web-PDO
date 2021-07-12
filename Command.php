@@ -19,8 +19,7 @@ if ($_POST) {
         <link rel="StyleSheet" href="prods.css">
         <link rel="StyleSheet" href="tableStyle.css">
         <script src="JS Scripts/name.js"></script>
-    </head><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
 
     <body style="margin:0px;">
 
@@ -33,7 +32,7 @@ if ($_POST) {
                 } else {
                 ?>
                     <form method="POST" action="LogMeOut.php" style="float:right; margin:0px">
-                        <input type="submit" value="logout" name="Logout" class="mi" onclick="return confirm('Are you sure?');">
+                        <input type="submit" value="logout" name="Logout" style="margin-top:15px; margin-right: 15px;" class="mi" onclick="return confirm('Are you sure?');">
                     </form>
                 <?php
                 }
@@ -54,14 +53,12 @@ if ($_POST) {
                         }
                         ?>
                         <table class="fl-table">
-                            <thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            <thead>
                                 <tr>
                                     <th colspan=3>Detail</th>
                                     <th>prix</th>
                                 </tr>
-                            </thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            </thead>
                             <tbody>
 
                                 <?php

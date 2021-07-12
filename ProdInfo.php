@@ -10,8 +10,7 @@ require_once 'Myfonctions.php';
     <link rel="StyleSheet" href="styleForInscrip.css">
     <link rel="StyleSheet" href="prods.css">
     <link rel="stylesheet" href="CssFontA/css/all.css">
-</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <body style="margin:0px;">
 
@@ -25,7 +24,7 @@ require_once 'Myfonctions.php';
             } else {
             ?>
                 <form method="POST" action="LogMeOut.php" style="float:right; margin:0px">
-                    <input type="submit" value="logout" name="Logout" class="mi" onclick="return confirm('Are you sure?');">
+                     <input type="submit" value="logout" name="Logout" style="margin-top:15px; margin-right: 15px;" class="mi" onclick="return confirm('Are you sure?');">
                 </form>
             <?php
             }

@@ -11,7 +11,8 @@ if($_POST)
     var_dump($res);
     if(empty($res))
     {
-        header("Location: index.php", true, 301);
+        
+        header("Location: index.php?wR=1", true, 301);
     }
     elseif($res["type_uti"]=="admin")
     {

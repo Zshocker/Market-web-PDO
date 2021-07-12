@@ -45,6 +45,7 @@ if($_POST)
     Send_Login_to($emailu,$login);
     }
     CloseCon($conn);   
+    header("Location: ListUti.php", true, 301);
 }
 header("Location: ListUti.php", true, 301);
 ?>

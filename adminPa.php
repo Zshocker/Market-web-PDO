@@ -23,8 +23,7 @@ $result = $conn->query($scr);
     <link rel="StyleSheet" href="prods.css">
     <link rel="stylesheet" href="CssFontA/css/all.css">
 
-</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <body style="margin:0px;">
     <div class="bar">
@@ -37,7 +36,7 @@ $result = $conn->query($scr);
             } else {
             ?>
                 <form method="POST" action="LogMeOut.php" style="float:right; margin:0px">
-                    <input type="submit" value="logout" name="Logout" class="mi" onclick="return confirm('Are you sure?');">
+                     <input type="submit" value="logout" name="Logout" style="margin-top:15px; margin-right: 15px;" class="mi" onclick="return confirm('Are you sure?');">
                 </form>
             <?php
             }
@@ -57,8 +56,7 @@ $result = $conn->query($scr);
             <div class="table-wrapper">
                 <center>
                     <table class="fl-table">
-                        <thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <thead>
                             <tr>
                                 <th>image</th>
                                 <th>Nom</th>
@@ -69,8 +67,7 @@ $result = $conn->query($scr);
                                 <th>categorie</th>
                                 <th>actions</th>
                             </tr>
-                        </thead><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        </thead>
                         <tbody>
                             <?php
                             while ($qe = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -96,7 +93,7 @@ $result = $conn->query($scr);
                                     <td><?php echo "$prix" ?></td>
                                     <td><?php
                                         $qant = Get_qte($id_prod);
-                                        if ($qant <= 0) echo "<b style='color:red;'>Out of stock</b>";
+                                        if ($qant <= 0) echo "<b style='color:red;'>Out of stock($qant)</b>";
                                         else echo $qant;
                                         ?></td>
                                     <td><?php echo "$redP" ?>%</td>

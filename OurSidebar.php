@@ -14,6 +14,10 @@
                 <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='ListUti.php';"><i class="fas fa-users"></i>Gestion des utilisateurs</button></div>
                 <div class="sideBDiv"><button class="sideBut" onclick="window.location.href='TousCom.php';"><i class="fas fa-columns"></i> Gestion des Commandes </button></div>
             <?php
-            }}
+            }}else{
+            ?>
+            <center><h2>Welcome To RW Store</h2></center>
+            <?php 
+            }
             ?>
         </div>

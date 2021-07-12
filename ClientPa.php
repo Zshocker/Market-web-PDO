@@ -17,8 +17,7 @@ session_start();
             return document.getElementById(str).value;
         }
     </script>
-</head><meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
 <body style="margin:0px;">
 
@@ -30,7 +29,7 @@ session_start();
             } else {
             ?>
                 <form method="POST" action="LogMeOut.php" style="float:right; margin:0px">
-                    <input type="submit" value="logout" name="Logout" class="mi" onclick="return confirm('Are you sure?');">
+                     <input type="submit" value="logout" name="Logout" style="margin-top:15px; margin-right: 15px;" class="mi" onclick="return confirm('Are you sure?');">
                 </form>
             <?php
             }
@@ -106,7 +105,7 @@ session_start();
                             </div>
                             <div style="margin-top: 25px; margin-left: 5px; margin-right:5px;">
                                 <?php
-                                if ($prixF != "0") {
+                                if ($prixF != "0" && $prixF!='') {
                                 ?>
                                     <del style="font-weight:bold; margin:5px; float:left;"><?php echo $prixF;  ?>DH</del>
                                 <?php
