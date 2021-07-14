@@ -37,7 +37,7 @@ if (isset($_GET['search'])) {
 <body style="margin:0px;">
     <div class="bar">
         <div style=" height:100%;">
-            <a href="index.php"><img src="rw-markets.png" style="width:auto; height:75%; margin-left:25px;"></a>
+            <a href="index.php"><img src="rw-markets.png" style="width: 5%; height: 100%; margin-left:25px;"></a>
             <?php if (!isset($_SESSION['id_uti'])) {
                 header("Location: index.php", true, 301);
             } elseif ($_SESSION['type_uti'] != 'admin') {
