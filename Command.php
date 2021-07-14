@@ -110,8 +110,8 @@ if ($_POST) {
                                 }
                                 ?>
                             </select>
-                            <input type="number" class="myInput" placeholder="Carte Number" id="CaNum" style=" width: 25%;">
-                            <input type="password" placeholder="CVV" id="CVV" style="width: 60px;">
+                            <input type="number" class="myInput noVWR" maxlength="16" minlength="16" placeholder="Carte Number" id="CaNum" style=" width: 25%;">
+                            <input type="password" placeholder="CVV" id="CVV" maxlength="4" style="width: 60px;">
                         </div>
                         <div class="row">
                             <div class="col-25">
@@ -150,6 +150,18 @@ if ($_POST) {
 
             }
         }
+        
+    </script>
+    <script>
+     var time = new Date().getTime();
+     function refresh() {
+         if(new Date().getTime() - time >= 3*60000) 
+             window.location.reload(true);
+         else 
+             setTimeout(refresh, 10000);
+     }
+
+     setTimeout(refresh, 60000);
     </script>
 
     </html>

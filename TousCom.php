@@ -13,7 +13,8 @@ if (isset($_GET['search'])) {
     elseif($search!='') $scr = "SELECT id_commande,date_com,adresse_liv,id_uti,etat_com,id_paiementE,id_paiementCa FROM commande  NATURAL JOIN etat_commande where adresse_liv like '%$search%' or id_commande=$search ORDER BY id_commande ";
     else 
     $scr = "SELECT id_commande,date_com,adresse_liv,id_uti,etat_com,id_paiementE,id_paiementCa FROM commande  NATURAL JOIN etat_commande where  id_etat=$etat ORDER BY id_commande DESC";
-    }else
+}
+    else
     $scr = "SELECT id_commande,date_com,adresse_liv,id_uti,etat_com,id_paiementE,id_paiementCa FROM commande NATURAL JOIN etat_commande  ORDER BY id_commande";
     $result = $conn->query($scr);
 ?>
@@ -103,7 +104,8 @@ if (isset($_GET['search'])) {
                             $etat = $qe['etat_com'];
                             $id_paiementE = $qe['id_paiementE'];
                             $id_paiementCa = $qe['id_paiementCa'];
-
+                            $testt=check_etat($id_commande,$etat);
+                            if($testt==2)$etat="EN COURS de TRAIT";
                         ?>
                             <tr>
                                 <td><?php echo "$id_commande" ?></td>
@@ -241,7 +243,7 @@ if (isset($_GET['search'])) {
                             <div class="col-75">
 
                                 <select name="etat_com" id="etat-<?= $i ?>" required <?php $etat_c = $qe['etat_com'];
-                                                                                        if ($etat_c == 'PAYEE') echo "disabled"; ?>>
+                                                                                        if ($etat_c == 'PAYEE'||$etat_c=='EN ATTENTE D\'ALIMENTATION DU STOCK'){echo "disabled";$chek=false; }else $chek=true;  ?>>
                                     <?php
                                     $scr = "SELECT * from etat_commande";
                                     $result = $conn->query($scr);
@@ -312,9 +314,9 @@ if (isset($_GET['search'])) {
                                                 <tr>
                                                     <input type="hidden" name="id_check[]" value="<?= $id_cheque ?>">
                                                     <td><input type="date" id="dateC" value="<?= $datep ?>" disabled></td>
-                                                    <td> <input type="date" id="date" name="datee[]" min="<?= $datep ?>" value="<?= $datee ?>" required>
+                                                    <td> <input type="date" id="date" name="datee[]" min="<?= $datep ?>" value="<?= $datee ?>" >
                                                     </td>
-                                                    <td><input type="number" class="numberN" id="num" min="1" value="<?= $montant ?>" disabled style="text-align:center;"></td>
+                                                    <td><input type="number"  class="numberN noVWR" id="num" min="1" value="<?= $montant ?>" disabled style="text-align:center;"></td>
 
                                                 </tr>
                                             <?php
@@ -324,15 +326,13 @@ if (isset($_GET['search'])) {
                                     </table>
                                     <button type="button" onclick="Insert_new_check('<?= $id_commande ?>')" class="mi"> <i class="fa fa-plus"></i></button>
                                 </div>
-
-
                             <?php
                             }
                             ?>
                             <input type="hidden" name="type_P" value="<?= $type_P ?>">
                         </div>
                         <div class="row">
-                            <button type="submit" name="Sub" value="He" class="mi">Confirmer</button>
+                            <button type="submit" name="Sub" value="He" class="mi" <?php if (!$chek)echo "disabled"; ?> >Confirmer</button>
                         </div>
                     </form>
 
@@ -421,7 +421,7 @@ if (isset($_GET['search'])) {
     }
 
     function Insert_new_check(id) {
-        $("#table-" + id).append('<tr id="TAJ-' + i + '"><td><input type="date" id="dateC" name="dateC[]" required></td><td> <input type="date" id="date" name="datee[]" required></td><td><input type="number" id="num" name="montant[]" min="1" style="text-align:center;" class="numberN" required></td><td><button type="button" onclick="remove_html_by_id(\'TAJ-' + i + '\')" ><i class="fa fa-minus" aria-hidden="true"></i></button></td></tr>');
+        $("#table-" + id).append('<tr id="TAJ-' + i + '"><td><input type="date" id="dateC" name="dateC[]" required></td><td> <input type="date" id="date" name="datee[]" ></td><td><input type="number" id="num" name="montant[]" min="1" style="text-align:center;" class="numberN noVWR" required></td><td><button type="button" onclick="remove_html_by_id(\'TAJ-' + i + '\')" ><i class="fa fa-minus" aria-hidden="true"></i></button></td></tr>');
         i++;
     }
 </script>

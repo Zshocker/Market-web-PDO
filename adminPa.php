@@ -360,7 +360,7 @@ $result = $conn->query($scr);
                             <label for="catnew">prix (1 unite): </label>
                         </div>
                         <div class="col-75">
-                            <input type="number" class="myInput" min="1" id="pridAch" name="prixAch" required>
+                            <input type="number" class="myInput noVWR" min="1" id="pridAch" name="prixAch" required>
                         </div>
                     </div>
                     <div class="row">

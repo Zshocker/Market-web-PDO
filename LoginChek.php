@@ -15,7 +15,7 @@ if($_POST)
         header("Location: index.php?wR=1", true, 301);
     }
     elseif($res["type_uti"]=="admin")
-    {
+    { 
         session_start();
         $_SESSION['id_uti']=$res['id_uti'];
         $_SESSION['type_uti']="admin";

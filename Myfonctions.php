@@ -42,4 +42,20 @@ while($qe=$resulta->fetch(PDO::FETCH_ASSOC))
 }
 return $prixTot;
 }
+
+function check_etat($id_Com,$etatInit)
+{
+    if($etatInit!="EN ATTENTE D'ALIMENTATION DU STOCK")return 1;
+    $conn = Conect_ToBD("magasin_en_ligne", "root");
+    $scr="SELECT * from ligne_commande where id_commande=$id_Com";
+    $resulta=$conn->query($scr);
+    while($qe=$resulta->fetch(PDO::FETCH_ASSOC))
+    {
+        $qte=Get_qte($qe['id_prod']);
+        if($qte<0)return false;
+    }
+    $scr="UPDATE commande SET id_etat=(SELECT id_etat from etat_commande where etat_com='EN COURS de TRAIT') where id_commande=$id_Com ";
+    $conn->exec($scr);
+    return 2;
+}
 ?>

@@ -299,3 +299,7 @@
   float: left;
   
 }
+.noVWR::-webkit-outer-spin-button,.noVWR::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
