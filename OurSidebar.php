@@ -16,7 +16,7 @@
             <?php
             }}else{
             ?>
-            <center><h2>Welcome To RW Store</h2></center>
+            <center><h2>Welcome To ilisi market</h2></center>
             <?php 
             }
             ?>

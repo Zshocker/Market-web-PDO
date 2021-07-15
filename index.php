@@ -21,7 +21,7 @@ window.location.href='index.php';
 
   <div class="bar">
     <div style="padding-top:15px ; height:100%;">
-      <a href="index.php"><img src="rw-markets.png" style="width: 5%; height: 100%; margin-left:25px;"></a>
+      <a href="index.php"><img src="rw-markets.png" style="width: 7%; height: 100%; margin-left:25px;"></a>
       <?php if (!isset($_SESSION['id_uti'])) { ?>
         <button class="mi" onclick="show_elem_id('inscrip')">Sign Up</button>
         <button class="mi" onclick="show_elem_id('Login')" style="margin-Right: 5px;">Log In</button>

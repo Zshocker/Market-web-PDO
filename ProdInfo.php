@@ -1,12 +1,31 @@
 <?php
 session_start();
 require_once 'Myfonctions.php';
+require_once 'ConnexionToBD.php';
+$conn = Conect_ToBD("magasin_en_ligne", "root");
+if (isset($_GET['id'])) {
+    $ser = $_GET['id'];
+    $scr = "SELECT id_prod,Designation,prix_std,description,reduction,label_cat FROM produit natural join categorie WHERE id_prod=$ser";
+} else header('location: index.php', true, 301);
+$result = $conn->query($scr);
+$qe = $result->fetch(PDO::FETCH_ASSOC);
+$id_prod = $qe['id_prod'];
+$sc_photo = "SELECT id_photo,photo FROM photo where id_prod=$id_prod";
+$rs = $conn->query($sc_photo);
+$photos = $rs->fetchAll(PDO::FETCH_ASSOC);
+$name = $qe['Designation'];
+$desc = $qe['description'];
+$cat = $qe['label_cat'];
+$prix = $qe['prix_std'];
+$red = floatval($qe['reduction']);
+$red1 = $prix - $prix * $red;
 ?>
 <html>
 
-<head><meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscipt</title>
+    <title><?=$name?></title>
     <link rel="StyleSheet" href="styleForInscrip.css">
     <link rel="StyleSheet" href="prods.css">
     <link rel="stylesheet" href="CssFontA/css/all.css">
@@ -16,7 +35,7 @@ require_once 'Myfonctions.php';
 
     <div class="bar">
         <div style="height:100%;">
-            <a href="index.php"><img src="rw-markets.png" style="width: 5%; height: 100%; margin-left:25px;"></a>
+            <a href="index.php"><img src="rw-markets.png" style="width: 7%; height: 100%; margin-left:25px;"></a>
             <?php if (!isset($_SESSION['id_uti'])) { ?>
                 <button class="mi" onclick="show_elem_id('inscrip')">Sign Up</button>
                 <button class="mi" onclick="show_elem_id('Login')" style="margin-Right: 5px;">Log In</button>
@@ -24,7 +43,7 @@ require_once 'Myfonctions.php';
             } else {
             ?>
                 <form method="POST" action="LogMeOut.php" style="float:right; margin:0px">
-                     <input type="submit" value="logout" name="Logout" style="margin-top:15px; margin-right: 15px;" class="mi" onclick="return confirm('Are you sure?');">
+                    <input type="submit" value="logout" name="Logout" style="margin-top:15px; margin-right: 15px;" class="mi" onclick="return confirm('Are you sure?');">
                 </form>
             <?php
             }
@@ -32,30 +51,11 @@ require_once 'Myfonctions.php';
         </div>
     </div>
     <div class="cont-92-5">
-    <?php include "OurSidebar.php"?>
+        <?php include "OurSidebar.php" ?>
         <div class="MainCont">
 
 
-            <?php
-            require_once 'ConnexionToBD.php';
-            $conn = Conect_ToBD("magasin_en_ligne", "root");
-            if (isset($_GET['id'])) {
-                $ser = $_GET['id'];
-                $scr = "SELECT id_prod,Designation,prix_std,description,reduction,label_cat FROM produit natural join categorie WHERE id_prod=$ser";
-            } else header('location: index.php', true, 301);
-            $result = $conn->query($scr);
-            $qe = $result->fetch(PDO::FETCH_ASSOC);
-            $id_prod = $qe['id_prod'];
-            $sc_photo = "SELECT id_photo,photo FROM photo where id_prod=$id_prod";
-            $rs = $conn->query($sc_photo);
-            $photos = $rs->fetchAll(PDO::FETCH_ASSOC);
-            $name = $qe['Designation'];
-            $desc = $qe['description'];
-            $cat = $qe['label_cat'];
-            $prix = $qe['prix_std'];
-            $red = floatval($qe['reduction']);
-            $red1 = $prix - $prix * $red;
-            ?>
+
 
             <div class="ProdDetailCont">
                 <div class="imagesProdCont">
@@ -108,10 +108,10 @@ require_once 'Myfonctions.php';
                         <br><br><br>
                         <span style="font-size:25px;">Stock:</span>
                         <span style="font-size:20px;"><?php
-                        $qant=Get_qte($id_prod);
-                        if($qant<=0)echo "<b style='color:red;'>Out of stock</b>";
-                        else echo $qant." unite";
-                        ?></span>
+                                                        $qant = Get_qte($id_prod);
+                                                        if ($qant <= 0) echo "<b style='color:red;'>Out of stock</b>";
+                                                        else echo $qant . " unite";
+                                                        ?></span>
 
                     </div>
                     <?php if (isset($_SESSION['id_uti'])) { ?>

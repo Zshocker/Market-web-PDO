@@ -16,7 +16,7 @@ $result = $conn->query($scr);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Les produits</title>
+    <title>Gestion des produits</title>
     <script src="JS Scripts/name.js"></script>
     <link rel="StyleSheet" href="styleForInscrip.css">
     <link rel="StyleSheet" href="tableStyle.css">
@@ -29,7 +29,8 @@ $result = $conn->query($scr);
     <div class="bar">
         <div style=" height:100%;">
         
-            <a href="index.php"><img src="rw-markets.png" style="width: 5%; height: 100%; margin-left:25px;"></a>
+            <a href="index.php">
+                <img src="rw-markets.png" style="width: 7%; height: 100%; margin-left:25px;"></a>
             <?php if (!isset($_SESSION['id_uti'])) {
                 header("Location: index.php", true, 301);
             } elseif ($_SESSION['type_uti'] != 'admin') {
@@ -113,7 +114,7 @@ $result = $conn->query($scr);
                                             <?php
                                                                                                                                                                                                                                                                                                                                                             }
                                             ?> show_elem_id('Updater'); "><i class="far fa-edit"></i></button>
-                                            <button type="button" class="miniBut" style="background-color:lawngreen; margin-left: 5px;" id="butnAchat" onclick="add_hidden_value_id('FormIsert',<?php echo $id_prod; ?>,'id_prod'); show_elem_id('achatInfo');"><i class="fas fa-shopping-basket"></i></button>
+                                            <button type="button" class="miniBut" style="background-color:lawngreen; margin-left: 5px;" onclick="add_hidden_value_id('FormIsert',<?php echo $id_prod; ?>,'id_prod'); show_elem_id('achatInfo');"><i class="fas fa-shopping-basket"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -271,7 +272,7 @@ $result = $conn->query($scr);
                             <label for="Desc">prod Description :</label>
                         </div>
                         <div class="col-75">
-                            <textarea id="Desc" name="prodDescri" style="height:200px" maxlength="100" required></textarea>
+                            <textarea id="Desc1" name="prodDescri" style="height:200px" maxlength="100" required></textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -366,10 +367,10 @@ $result = $conn->query($scr);
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="Cat"> Forniseur: </label>
+                            <label for="Cat"> Fornisseur: </label>
                         </div>
                         <div class="col-75">
-                            <select id="SelectForn" name="fornis" required>
+                            <select id="selen" name="fornis" onchange="Change_EE(this.value)" required>
                                 <option></option>
                                 <?php
                                 $resultE = $conn->query("Select * from fornisseur");
@@ -380,11 +381,21 @@ $result = $conn->query($scr);
                                 }
                                 CloseCon($conn);
                                 ?>
+                                <option value='0'>Autre</option>
                             </select>
-                            <input type="submit" name='AjouterAchat' value="Ajouter" id="Ajach" onclick="return confirm('are you sure?');">
                         </div>
                     </div>
-
+                    <div class="row" id="NFn" style="display:none;">
+                        <div class="col-25">
+                            <label for="NFourn">Nouveau fornisseur: </label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" class="myInput noVWR" id="NFourn" onchange="Change_Dis(this.value)" name="NFourn">
+                        </div>
+                    </div>
+                    <div class="row">
+                    <input type="submit" name='AjouterAchat' value="Ajouter" id="Ajach" onclick="return confirm('are you sure?');"> 
+                    </div>            
                 </form>
             </div>
         </center>
@@ -415,7 +426,8 @@ $result = $conn->query($scr);
                 MyImages[i].remove();
             }
         }
-        $("#catnew").keyup(function() {
+        $(document).ready(function(){
+            $("#catnew").keyup(function() {
             if (this.value != "") {
                 $("#CatSelect").attr("disabled", "disabled");
                 $("#SuppCat").attr("disabled", "disabled");
@@ -444,13 +456,37 @@ $result = $conn->query($scr);
                 return false;
             }
             return true;
-        })
+        });
         $("#ModiferButFinnale").click(function() {
             if ($("#catMod").val() == "") {
                 return false;
             }
             return true;
-        })
+        });
+        }); 
+        function Change_EE(val) {
+                if(val==0)
+                {   
+                    $("#NFn").css("display","block");
+                    $("#NFourn").attr("required");
+                }
+                else{
+                    $("#NFn").css("display","none");
+                    $("#NFourn").removeAttr("required");
+                }
+            }; 
+        function Change_Dis(val)
+            {
+                if(val!='')
+                {
+                    $("#selen").attr("disabled", "disabled");
+                }
+                else
+                {
+                    $("#selen").removeAttr("disabled");
+                    
+                }
+            }
     </script>
 
 </body>
