@@ -421,7 +421,7 @@ if (isset($_GET['search'])) {
     }
 
     function Insert_new_check(id) {
-        $("#table-" + id).append('<tr id="TAJ-' + i + '"><td><input type="date" id="dateC" name="dateC[]" required></td><td> <input type="date" id="date" name="datee[]" ></td><td><input type="number" id="num" name="montant[]" min="1" style="text-align:center;" class="numberN noVWR" required></td><td><button type="button" onclick="remove_html_by_id(\'TAJ-' + i + '\')" ><i class="fa fa-minus" aria-hidden="true"></i></button></td></tr>');
+        $("#table-" + id).append('<tr id="TAJ-' + i + '"><td><input type="date" id="dateC" name="dateC[]" required></td><td> <input type="date" id="date" name="datee[]" ></td><td><input type="number" step="0.01" id="num" name="montant[]" min="1" style="text-align:center;" class="numberN noVWR" required></td><td><button type="button" onclick="remove_html_by_id(\'TAJ-' + i + '\')" ><i class="fa fa-minus" aria-hidden="true"></i></button></td></tr>');
         i++;
     }
 </script>

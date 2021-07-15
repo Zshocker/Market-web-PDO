@@ -16,7 +16,7 @@
             <?php
             }}else{
             ?>
-            <center><h2>Welcome To ilisi market</h2></center>
+            <center><h1 style="margin-top: 100px; color:rgba(0,255,255,0.7) ; font-family:cursive" >Welcome To <br> ilisi market</h1></center>
             <?php 
             }
             ?>

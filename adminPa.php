@@ -237,7 +237,7 @@ $result = $conn->query($scr);
                             <label for="prix">Prix barré: </label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="prixFA" name="fake_prix">
+                            <input type="text" id="prixFA" name="fake_prix" required value="0">
                         </div>
                     </div>
                     <div class="row">

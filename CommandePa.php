@@ -110,7 +110,8 @@ $result = $conn->query($scr);
                                             $res = $conn->query($scr);
                                             $res = $res->fetch(PDO::FETCH_ASSOC);
                                             $tp = $res['date_paiementE'];
-                                            if($tp!='')echo "date de paiement: $tp";
+                                            //$dt=date['Y-m-d'];
+                                            if($tp!='' && $tp!='0000-00-00')echo "date de paiement: $tp";
                                             else  echo "Pas encore payee";
                                         } elseif ($var == 3) {
                                         ?>
