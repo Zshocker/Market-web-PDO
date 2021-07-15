@@ -14,10 +14,13 @@ if($_POST)
         if($id_et[1]=='PAYEE'||$id_et[1]=='LIVREE'){
             $scr="UPDATE  paiement_espece SET date_paiementE=NOW() where id_commande=$id_com";
             $conn->exec($scr);
+            $scr="UPDATE commande SET id_etat=(SELECT id_etat from etat_commande where etat_com='PAYEE') where id_commande=$id_com"; 
+            $conn->exec($scr);
+        }else
+        {
+            $scr="UPDATE commande SET id_etat=$id_etat where id_commande=$id_com";
+            $conn->exec($scr);
         }
-      
-        $scr="UPDATE commande SET id_etat=$id_etat where id_commande=$id_com";
-        $conn->exec($scr);
     }elseif($type=="carte")
     {
         if($id_et[1]=='PAYEE'||$id_et[1]=='LIVREE')$scr="UPDATE commande SET id_etat=(SELECT id_etat from etat_commande where etat_com='PAYEE') where id_commande=$id_com"; 
