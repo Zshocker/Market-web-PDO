@@ -47,14 +47,14 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
             
             <div class="container1" >
                 <center>
-                <form action="compte_uti.php" method="POST" enctype="multipart/form-data">
+                <form action="compte_uti.php" id="compte_mod" method="POST" enctype="multipart/form-data">
 
                     <div class="row">
                         <div class="col-25">
-                            <label for="nomu"> Nom: </label>
+                            <label for="fname"> Nom: </label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="nom" name="nom" value="<?php echo $qe['nom'] ?>" required>
+                            <input type="text" id="fname" name="nom" value="<?php echo $qe['nom'] ?>" required>
                         </div>
                     </div>
                     <div class="row">
@@ -62,7 +62,7 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
                             <label for="prenomu">Prenom: </label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="prenom" name="prenom" value="<?php echo $qe['prenom'] ?>" required>
+                            <input type="text" id="lname" name="prenom" value="<?php echo $qe['prenom'] ?>" required>
                         </div>
                     </div>
                     <div class="row">
@@ -70,7 +70,7 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
                             <label for="emailu"> Email </label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="email" name="email" value="<?php echo $qe['email'] ?>" required>
+                            <input type="text" id="Email" name="email" value="<?php echo $qe['email'] ?>" required>
                         </div>
                     </div>
                     <div class="row">
@@ -139,6 +139,43 @@ $qe=$result->fetch(PDO::FETCH_ASSOC);
 
 
 </body>
-
+<script src="JS scripts/jquery.min.js"></script>
+<script>
+$("#compte_mod").submit(function(event)
+{
+  var test=true;
+  event.preventDefault();
+  if(!test_name($("#fname").val())){
+    $("#fname").css("background-color","red");
+    test=false;
+  }else{
+    $("#fname").css("background-color","");
+  }
+  if(!test_name($("#lname").val())){
+    $("#lname").css("background-color","red");
+    test=false;
+  }
+  else
+  {
+    $("#lname").css("background-color","");
+  }
+  if(!test_email($("#Email").val())){
+    $("#Email").css("background-color","red");
+    test=false;
+  }else{
+    $("#Email").css("background-color","");
+  }
+  if(!test_numMar($("#tele").val())){
+    $("#tele").css("background-color","");
+    $("#tele").css("background-color","red");
+    test=false;
+  }
+  else{
+    $("#tele").css("background-color","");
+  }
+  if(!test)event.preventDefault();
+}
+)
+</script>
 
 </html>

@@ -124,29 +124,29 @@ $result = $conn->query($scr);
                 <div class="row">
                     <button class="mi" onclick="unshow_elem_id('Ajuti')">&times;</button>
                 </div>
-                <form action="utilisateur.php" method="POST" enctype="multipart/form-data">
+                <form action="utilisateur.php" id="formInscr" method="POST" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-25">
-                            <label for="nomu"> Nom: </label>
+                            <label for="fname"> Nom: </label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="nom" name="nom" required>
+                            <input type="text" id="fname" name="nom" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="prenomu">Prenom: </label>
+                            <label for="lname">Prenom: </label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="prenom" name="prenom" required>
+                            <input type="text" id="lname" name="prenom" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="emailu"> Email </label>
+                            <label for="Email"> Email </label>
                         </div>
                         <div class="col-75">
-                            <input type="text" id="email" name="email" required>
+                            <input type="text" id="Email" name="email" required>
                         </div>
                     </div>
 
@@ -168,7 +168,7 @@ $result = $conn->query($scr);
                     </div>
                     <div class="row">
                         <div class="col-25">
-                            <label for="teleu"> Téléphone </label>
+                            <label for="tele"> Téléphone </label>
                         </div>
                         <div class="col-75">
                             <input type="text" id="tele" name="tele" required>
@@ -229,5 +229,42 @@ $result = $conn->query($scr);
         return document.getElementById(str).value;
     }
 </script>
-
+<script src="JS scripts/jquery.min.js"></script>
+<script>
+$("#formInscr").submit(function(event)
+{
+  var test=true;
+  event.preventDefault();
+  if(!test_name($("#fname").val())){
+    $("#fname").css("background-color","red");
+    test=false;
+  }else{
+    $("#fname").css("background-color","");
+  }
+  if(!test_name($("#lname").val())){
+    $("#lname").css("background-color","red");
+    test=false;
+  }
+  else
+  {
+    $("#lname").css("background-color","");
+  }
+  if(!test_email($("#Email").val())){
+    $("#Email").css("background-color","red");
+    test=false;
+  }else{
+    $("#Email").css("background-color","");
+  }
+  if(!test_numMar($("#tele").val())){
+    $("#tele").css("background-color","");
+    $("#tele").css("background-color","red");
+    test=false;
+  }
+  else{
+    $("#tele").css("background-color","");
+  }
+  if(!test)event.preventDefault();
+}
+)
+</script>
 </html>
