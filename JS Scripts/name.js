@@ -49,5 +49,6 @@ const regex=/0[567][0-9]{8}/;
 return regex.test(name);
 }
 function test_Email(email){
-
+         const regex= /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+          return regex.test(email);
 }
