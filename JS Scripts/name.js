@@ -40,3 +40,14 @@ function switchSrcImg(idF,idI)
 {
     document.getElementById(idF).src=document.getElementById(idI).src;
 }
+function test_name(name){
+const regex=/^([a-zA-Z]+\ ?)+$/;
+return regex.test(name);
+}
+function test_numMar(name){
+const regex=/0[567][0-9]{8}/;
+return regex.test(name);
+}
+function test_Email(email){
+
+}
